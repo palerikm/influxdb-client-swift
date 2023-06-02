@@ -112,7 +112,7 @@ extension InfluxDBClient {
             return self
         }
 
-        internal func evaluate() -> [String: String?] {
+        public func evaluate() -> [String: String?] {
             let map: [String: String?] = tags.mapValues { value in
                 if let value = value, value.starts(with: "${env.") {
                     let start = value.index(value.startIndex, offsetBy: 6)
