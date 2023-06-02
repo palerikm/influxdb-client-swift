@@ -4,11 +4,11 @@
 
 import Foundation
 
-extension InfluxDBClient {
+public extension InfluxDBClient {
     /// Point defines the values that will be written to the database.
     ///
     /// - SeeAlso: http://bit.ly/influxdata-point
-    public class Point {
+    class Point {
         /// The measurement name.
         private let measurement: String
         // The measurement tags.
@@ -95,7 +95,7 @@ extension InfluxDBClient {
     ///         .addDefaultTag(key: "customer", value: "California Miner")
     ///         .addDefaultTag(key: "data_center", value: "${env.DATA_CENTER_LOCATION}")
     /// ````
-    public class PointSettings {
+    class PointSettings {
         // Default tags which will be added to each point written by api.
         var tags: [String: String?] = [:]
 
@@ -112,7 +112,7 @@ extension InfluxDBClient {
             return self
         }
 
-        public func evaluate() -> [String: String?] {
+        internal func evaluate() -> [String: String?] {
             let map: [String: String?] = tags.mapValues { value in
                 if let value = value, value.starts(with: "${env.") {
                     let start = value.index(value.startIndex, offsetBy: 6)
